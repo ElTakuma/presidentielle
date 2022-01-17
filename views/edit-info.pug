@@ -1,0 +1,29 @@
+extends layout
+
+block content
+
+  div(style='padding:2%')
+    h1=title
+    button(type='button' class='btn-form' onClick='redirectToHome()') Retour a l'acceuil
+    hr
+    form(method='post' action='/users/update/'+data.id)
+        div(class='grid-container')
+           div
+               b Prenom :
+               input(type='text' name='prenom' class='input-text-form' value=data.prenom style='width:100%')
+           div
+               b nom :
+               input(type='text' name='nom' class='input-text-form' value=data.nom style='width:100%')
+           div
+               b age :
+               input(type='number' name='age' class='input-text-form' value=data.age style='width:100%')
+           div
+               b Parti politique :
+               input(type='text' name='parti' class='input-text-form' value=data.parti style='width:100%')
+           div
+               b Budget :
+               input(type='number' name='budget' class='input-text-form' value=data.budget style='width:100%')
+           br
+           div
+              button(type='submit' class='btn-form' style='background-color: lightgreen') Enregistrer
+    hr

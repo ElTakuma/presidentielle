@@ -3,5 +3,13 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/scripts.js')
   body
+    div(class='header')
+      div(class='title')
+          h1= title
     block content
+
+footer(class='footer')
+    div(style='margin:auto; width:10%; padding-top:15px')
+        span all copyright

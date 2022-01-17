@@ -1,0 +1,12 @@
+extends layout
+
+block content
+
+  div(style='padding:2%')
+    h1=title
+    button(type='button' class='btn-form' onClick='redirectToHome()') Retour a l'acceuil
+    hr
+    div(class='grid-container')
+      b Code : #{data.code}
+      span ce code sera necessaire pour mettre a jour vos informations
+    hr

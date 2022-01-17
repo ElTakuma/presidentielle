@@ -1,15 +1,40 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  div(class='grid-container')
-    div
-        div(class='card')
-    div
-        div(class='card')
-    div
-        div(class='card')
+
+  div(style='padding:2%')
+    h1(class='title-section') Candidats en cources
+    hr
+    br
+    div(class='grid-container')
+      each val, key in data
+          if val.parrainage
+              div(class='card')
+                div(class='edit-section')
+                  button(type='button' onclick="goToEditPage('"+val.code+"', '"+val.id+"')" class='edit-btn') Editer
+                div(class='user-lastname')
+                    span= val.prenom
+    br
+    hr
+  div(style='padding:2%')
+    h1(class='title-section') Candidats Inscrits
+    hr
+    br
+    div(class='grid-container')
+      each val, key in data
+          if !val.parrainage
+              div(class='card')
+                  div(class='user-lastname')
+                    span= val.prenom
+    br
+    hr
+
+    div(style='with=100%')
+        h1(class='title-section') Devenir Candidat
+        div(class='become-candidate')
+            form(method='post' action='/users/add')
+                input(type='text' name='prenom' class='input-text-form' placeholder='Votre prenom' required)
+                button(type='submit' class='submit-btn-form') S'inscrire
 
   div 4
   div 5
