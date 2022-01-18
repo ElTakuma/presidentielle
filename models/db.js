@@ -53,7 +53,7 @@ connection_db.connect(function (err) {
                                 }
                                 if (!err) {
                                     console.log('===>Creating Table =>\' users\'');
-                                        con.query("CREATE TABLE users (id BIGINT AUTO_INCREMENT PRIMARY KEY UNIQUE ,code VARCHAR(100) NOT NULL , nom VARCHAR(150), prenom VARCHAR(100), age INT(5), parti VARCHAR(255), role VARCHAR(255) DEFAULT 'candidat', budget INT(20), parrainage BOOLEAN DEFAULT false, password VARCHAR(255) NOT NULL );",
+                                        con.query("CREATE TABLE users (id BIGINT AUTO_INCREMENT PRIMARY KEY UNIQUE ,code VARCHAR(100) NOT NULL , nom VARCHAR(150), prenom VARCHAR(100), age INT(5), parti VARCHAR(255), role VARCHAR(255) DEFAULT 'candidat', budget INT(20), parrainage BOOLEAN DEFAULT false, candidatureOff BOOLEAN DEFAULT false, image VARCHAR(255) );",
                                         function (err, result) {
                                             if (err) {
                                                 console.error('Error to create the table. create it manually. - ' + err);
@@ -63,19 +63,16 @@ connection_db.connect(function (err) {
                                                 console.log('');
                                                 console.info('Table # users # ====> Insertion of users records');
 
-                                                const salt = bcrypt.genSaltSync(10);
-                                                const password = bcrypt.hashSync('test1234', salt);
-
                                                 let userData = [
-                                                    ['C-001', 'Macron', 'Emmanuel', true, password],
-                                                    ['C-002', 'Pécresse', 'Valérie', true, password],
-                                                    ['C-003', 'Le Pen', 'Marine', true, password],
-                                                    ['C-004', 'Mélenchon', 'Jean-Luc', true, password],
-                                                    ['C-005', 'Jadot', 'Yann', true, password],
-                                                    ['C-006', 'Hidalgot', 'Anne', true, password]
+                                                    ['C-001', 'Macron', 'Emmanuel', true],
+                                                    ['C-002', 'Pécresse', 'Valérie', true],
+                                                    ['C-003', 'Le Pen', 'Marine', true],
+                                                    ['C-004', 'Mélenchon', 'Jean-Luc', true],
+                                                    ['C-005', 'Jadot', 'Yann', true],
+                                                    ['C-006', 'Hidalgot', 'Anne', true]
                                                 ];
 
-                                                con.query("INSERT INTO users (code, nom, prenom, parrainage, password) VALUES ?" , [userData], function (err, result) {
+                                                con.query("INSERT INTO users (code, nom, prenom, parrainage) VALUES ?" , [userData], function (err, result) {
                                                     if (err){
                                                         console.error('====> '+ err);
                                                     }

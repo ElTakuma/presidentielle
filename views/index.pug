@@ -9,13 +9,64 @@ block content
     div(class='grid-container')
       each val, key in data
           if val.parrainage
-              div(class='card')
-                div(class='edit-section')
-                  button(type='button' onclick="goToEditPage('"+val.code+"', '"+val.id+"')" class='edit-btn') Editer
-                div(class='user-lastname')
-                    span= val.prenom
+              if !val.candidatureOff
+                 div(class='card')
+                     div(class='edit-section')
+                       button(type='button' onclick="showCandidate('"+val.id+"')" class='show-btn') Voir
+                       button(type='button' onclick="goToEditPage('"+val.code+"', '"+val.id+"')" class='edit-btn') Editer
+                     if !data.image
+                         div(class='user-lastname' style="background-image: url('/images/user.png'); min-height:250px;background-size: 100% 100%;width:100%;")
+                             span= val.prenom
+                     if data.image
+                         div(style="background-image: url('/images/"+ data.image +"')" class='user-lastname')
+                               span= val.prenom
+                     div(style='padding:10px')
+                         p
+                          b Nom :&nbsp;
+                          span=val.nom
+                         p
+                          b Prenom :&nbsp;
+                          span=val.prenom
+                         p
+                          b Age :&nbsp;
+                          span=val.age
+                         p
+                          b Parti politique :&nbsp;
+                          span=val.parti
     br
     hr
+    div(style='padding:2%')
+        h1(class='title-section') Candidats en hors cources
+        hr
+        br
+        div(class='grid-container')
+          each val, key in data
+              if val.parrainage
+                  if val.candidatureOff
+                     div(class='card')
+                         div(class='edit-section')
+                           button(type='button' onclick="showCandidate('"+val.id+"')" class='show-btn') Voir
+                         if !data.image
+                             div(class='user-lastname' style="background-image: url('/images/user.png'); min-height:250px;background-size: 100% 100%;width:100%;")
+                                 span= val.prenom
+                         if data.image
+                             div(style="background-image: url('/images/"+ data.image +"')" class='user-lastname')
+                                   span= val.prenom
+                         div(style='padding:10px')
+                             p
+                              b Nom :&nbsp;
+                              span=val.nom
+                             p
+                              b Prenom :&nbsp;
+                              span=val.prenom
+                             p
+                              b Age :&nbsp;
+                              span=val.age
+                             p
+                              b Parti politique :&nbsp;
+                              span=val.parti
+        br
+        hr
   div(style='padding:2%')
     h1(class='title-section') Candidats Inscrits
     hr
@@ -24,17 +75,19 @@ block content
       each val, key in data
           if !val.parrainage
               div(class='card')
-                  div(class='user-lastname')
-                    span= val.prenom
+               div(class='edit-section')
+                 button(type='button' onclick="confirmCandidate('"+val.id+"')" class='show-btn') Voir
+               div(class='user-lastname')
+                     span= val.prenom
     br
     hr
 
-    div(style='with=100%')
+    div(style='width=100%')
         h1(class='title-section') Devenir Candidat
         div(class='become-candidate')
             form(method='post' action='/users/add')
                 input(type='text' name='prenom' class='input-text-form' placeholder='Votre prenom' required)
                 button(type='submit' class='submit-btn-form') S'inscrire
 
-  div 4
-  div 5
+  br
+  br

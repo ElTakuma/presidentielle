@@ -43,19 +43,20 @@ a {
   box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
   width: 90%;
   border-radius: 20px;
-  background-color: rgba(0,0,0, 0.1);
+  /*background-color: rgba(0,0,0, 0.1);*/
+  background-color: rgba(255,255,255,0.5);
 }
 
-.card .user-lastname {
-  margin: auto;
+.user-lastname {
+  margin: auto auto auto 0;
   width: 50%;
-  height: 100%;
+  min-height: 40px;
   /*border: 1px black inset;*/
-  padding: 10px;
+  /*padding: 10px;*/
   text-align: center;
 }
 
-.card .user-lastname span{
+.user-lastname span{
   font-size: 20px;
   font-weight: bolder;
   text-shadow: 2px 2px 6px #000000;
@@ -106,7 +107,8 @@ a {
 }
 
 .edit-section {
-  width: 10%;
+  display: flex;
+  width: 100px;
   margin: auto 0 auto auto;
 }
 .edit-btn {
@@ -119,3 +121,39 @@ a {
   background-color: white;
   border: 2px aqua inset;
 }
+.show-btn {
+  background-color: lime;
+  border-radius: 10px;
+  transition: ease 200ms;
+}
+
+.show-btn:hover {
+  background-color: white;
+  border: 2px lime inset;
+}
+
+.img img{
+  width: 275px;
+}
+
+@media only screen and (min-width: 1200px) {
+  .grid-container {
+    grid-template-columns: auto auto auto auto;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .grid-container {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .grid-container {
+    grid-template-columns: auto;
+  }
+  .submit-btn-form {
+    width: auto;
+  }
+}
+

@@ -1,0 +1,50 @@
+extends layout
+
+block content
+
+  div(style='padding:2%')
+    h1(class='title-section') Information du Candidat
+    hr
+    br
+    span &nbsp;
+      form(method='post'  enctype="multipart/form-data" action='/users/upload/'+data.id)
+        div(style='width:70%; margin:auto;')
+            div(class='grid-container' style='background-color:white')
+                if !data.image
+                    div(style="background-image: url('/images/user.png'); min-height:250px;background-size: 100% 100%;min-width:200px")
+                if data.image
+                    div(style="background-image: url('/images/"+ data.image +"')")
+                div(style='')
+                    p
+                     b Nom :&nbsp;
+                     span=data.nom
+                    p
+                     b Prenom :&nbsp;
+                     span=data.prenom
+                    p
+                     b Age :&nbsp;
+                     span=data.age
+                    p
+                     b Parti politique :&nbsp;
+                     span=data.parti
+                    p
+                     b Budget :&nbsp;
+                     span=data.budget
+                    p
+                     b Candidature :&nbsp;
+                     if !data.candidatureOff
+                       span(style="color:green; background-color:lightgreen; padding:5px") En course
+                     if data.candidatureOff
+                       span(style="color:red; background-color: rgba(255,0,0,0.1); padding:5px") Retiré
+                    p
+                     b Photo :&nbsp;
+                     input(type='file' name='image' placeholder='Mettre à jour l\'image')
+                     span &nbsp;
+                     button(type='submit' class='btn-form' style='') Allez !
+            br
+            button(type='button' class='btn-form' onClick='redirectToHome()') Retour a l'acceuil
+            span &nbsp;
+            button(type='button' onclick="goToEditPageFromShow('"+data.id+"')" class='btn-form' style='background-color:lightblue') Editer
+            span &nbsp;
+            if !data.candidatureOff
+                button(type='button' onclick="retirerCandidature('"+data.id+"')" class='btn-form' style='background-color:indianred') Retirer candidature
