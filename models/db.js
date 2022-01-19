@@ -77,6 +77,10 @@ connection_db.connect(function (err) {
                                                         console.error('====> '+ err);
                                                     }
                                                     console.log("Number of records inserted: " + result.affectedRows);
+                                                    console.log("****************************");
+                                                    console.log("Veillez relancer le serveur");
+                                                    console.log("****************************");
+                                                    process.exit(1);
                                                 })
                                             }
                                         });
@@ -89,12 +93,14 @@ connection_db.connect(function (err) {
 
         }
         console.log('');
-        // console.info("Start again your server");
         // process.exit(1);
     }
 
-
     console.log('connected as id ' + connection_db.threadId);
+    console.log('');
+    console.log("****************************");
+    console.info("Allez sur: http://localhost:3000");
+    console.log("****************************");
 });
 
 module.exports = connection_db;
